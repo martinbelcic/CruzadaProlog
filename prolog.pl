@@ -11,6 +11,7 @@ posicion([_|Cola],N,X):-
     X=X1.
 pos(1,4).
 pos(2,4).
+<<<<<<< HEAD
 miembro(X,[X,_]):-
   X = Lista,
   pos(1,N),
@@ -24,6 +25,21 @@ ubicacion1(X,[X,_]):-
   pos(1,N),
   longitud(Lista,N).
 ubicacion2(X,[_,X]):-
+=======
+miembro(X,(X,_)):-
+  X = Lista,
+  pos(1,N),
+  longitud(Lista,N).
+miembro(X,(_,X)):-
+  X = Lista,
+  pos(2,N),
+  longitud(Lista,N).
+ubicacion1(X,(X,_)):-
+  X = Lista,
+  pos(1,N),
+  longitud(Lista,N).
+ubicacion2(X,(_,X)):-
+>>>>>>> master
   X = Lista,
   pos(2,N),
   longitud(Lista,N).
