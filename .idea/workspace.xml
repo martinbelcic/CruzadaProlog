@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="24f4e018-df3f-4e66-b83c-73e0ccfb3cf2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/prolog.pl" beforeDir="false" afterPath="$PROJECT_DIR$/prolog.pl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controlador/Controlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controlador/Controlador.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Modelo/Grilla.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelo/Grilla.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Vista/VentanaGratis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vista/VentanaGratis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Modelo/Palabra.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelo/Palabra.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Vista/VentanaSolucion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vista/VentanaSolucion.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -19,33 +20,35 @@
     <session id="-1480369384">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="5" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.106" value="1" />
           <entry key="project.open.time.201" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.open.time.66" value="1" />
+          <entry key="project.open.time.94" value="1" />
+          <entry key="project.opened" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="form" value="2" />
-          <entry key="java" value="8" />
+          <entry key="java" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="GUI_DESIGNER_FORM" value="2" />
-          <entry key="JAVA" value="8" />
+          <entry key="JAVA" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="1414" />
+          <entry key="java" value="3167" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="1414" />
+          <entry key="JAVA" value="3167" />
         </counts>
       </usages-collector>
     </session>
@@ -58,8 +61,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Vista/VentanaSolucion.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="161" column="5" selection-start-line="161" selection-start-column="5" selection-end-line="161" selection-end-column="5" />
+            <state relative-caret-position="184">
+              <caret line="141" column="48" lean-forward="true" selection-start-line="141" selection-start-column="48" selection-end-line="141" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -79,8 +82,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controlador/Controlador.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="915">
-              <caret line="93" column="100" selection-start-line="93" selection-start-column="100" selection-end-line="93" selection-end-column="100" />
+            <state relative-caret-position="183">
+              <caret line="101" column="39" selection-start-line="101" selection-start-column="39" selection-end-line="101" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -88,11 +91,18 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Modelo/Grilla.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1485">
-              <caret line="122" column="7" selection-start-line="122" selection-start-column="7" selection-end-line="122" selection-end-column="7" />
+            <state relative-caret-position="79">
+              <caret line="463" column="61" selection-start-line="463" selection-start-column="61" selection-end-line="463" selection-end-column="61" />
               <folding>
+                <element signature="e#319#327#0" expanded="true" />
+                <element signature="e#386#395#0" expanded="true" />
+                <element signature="e#465#479#0" expanded="true" />
                 <element signature="e#564#565#0" expanded="true" />
                 <element signature="e#595#596#0" expanded="true" />
+                <element signature="e#1496#1497#0" expanded="true" />
+                <element signature="e#1530#1531#0" expanded="true" />
+                <element signature="e#11207#11208#0" expanded="true" />
+                <element signature="e#11241#11242#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -113,10 +123,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Modelo/Grilla.java" />
-        <option value="$PROJECT_DIR$/src/Controlador/Controlador.java" />
         <option value="$PROJECT_DIR$/src/Vista/VentanaGratis.java" />
+        <option value="$PROJECT_DIR$/src/Controlador/Controlador.java" />
+        <option value="$PROJECT_DIR$/src/Modelo/Palabra.java" />
         <option value="$PROJECT_DIR$/src/Vista/VentanaSolucion.java" />
+        <option value="$PROJECT_DIR$/src/Modelo/Grilla.java" />
       </list>
     </option>
   </component>
@@ -131,7 +142,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -154,17 +164,24 @@
               <item name="CruzadaProlog" type="b2602c69:ProjectViewProjectNode" />
               <item name="CruzadaProlog" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Modelo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CruzadaProlog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CruzadaProlog" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Vista" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541616026775" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541633093086" />
     <property name="last_opened_file_path" value="/usr/lib/swi-prolog/lib/jpl.jar!/" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -219,7 +236,7 @@
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="768" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49921754" visible="true" weight="0.26363635" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49921754" visible="true" weight="0.27272728" />
       <window_info id="Structure" order="1" sideWeight="0.5007825" side_tool="true" weight="0.25984848" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -262,16 +279,6 @@
     <entry file="file://$PROJECT_DIR$/src/Vista/VentanaSolucion.form">
       <provider selected="true" editor-type-id="ui-designer" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Vista/VentanaSolucion.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="161" column="5" selection-start-line="161" selection-start-column="5" selection-end-line="161" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Vista/VentanaGratis.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1950">
@@ -279,20 +286,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Modelo/Palabra.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
+          <folding>
+            <element signature="e#523#524#0" expanded="true" />
+            <element signature="e#552#553#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controlador/Controlador.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="915">
-          <caret line="93" column="100" selection-start-line="93" selection-start-column="100" selection-end-line="93" selection-end-column="100" />
+        <state relative-caret-position="183">
+          <caret line="101" column="39" selection-start-line="101" selection-start-column="39" selection-end-line="101" selection-end-column="39" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Modelo/Grilla.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1485">
-          <caret line="122" column="7" selection-start-line="122" selection-start-column="7" selection-end-line="122" selection-end-column="7" />
+        <state relative-caret-position="79">
+          <caret line="463" column="61" selection-start-line="463" selection-start-column="61" selection-end-line="463" selection-end-column="61" />
           <folding>
+            <element signature="e#319#327#0" expanded="true" />
+            <element signature="e#386#395#0" expanded="true" />
+            <element signature="e#465#479#0" expanded="true" />
             <element signature="e#564#565#0" expanded="true" />
             <element signature="e#595#596#0" expanded="true" />
+            <element signature="e#1496#1497#0" expanded="true" />
+            <element signature="e#1530#1531#0" expanded="true" />
+            <element signature="e#11207#11208#0" expanded="true" />
+            <element signature="e#11241#11242#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Vista/VentanaSolucion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="141" column="48" lean-forward="true" selection-start-line="141" selection-start-column="48" selection-end-line="141" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

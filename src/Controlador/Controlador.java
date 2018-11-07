@@ -99,6 +99,7 @@ public class Controlador implements ActionListener
                 gratis.matar();
                 this.serializador.crearArchivo();
                 this.serializador.escribirArchivo();
+                grilla.armarSolucion();
                 solucion.arrancar();
             } catch (NoExistePalabraException f) {
             } catch (ErrorGratisException f) {

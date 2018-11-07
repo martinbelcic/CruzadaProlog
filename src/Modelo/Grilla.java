@@ -1,11 +1,17 @@
 package Modelo;
 
+import org.jpl7.Query;
+import org.jpl7.Term;
+import org.jpl7.Variable;
+
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Map;
 
 public class Grilla
 {
     private boolean[][] matriz;
+    private String[][] cruzada;
     private int col, filas;
     private ArrayList<String> lista = new ArrayList<String>();
     private ArrayList<Palabra> palabras = new ArrayList<Palabra>();
@@ -56,6 +62,10 @@ public class Grilla
     
     public boolean getCelda(int i, int j){
         return this.matriz[i][j];
+    }
+
+    public String getCeldaCruzada(int i, int j){
+        return this.cruzada[i][j];
     }
     
     public void buscaPalabras()
@@ -378,5 +388,100 @@ public class Grilla
             System.out.println(it.next());
         }
     }
-    
+
+    public void armarSolucion(){
+        this.queryProlog();
+    }
+
+    private void queryProlog(){
+        Query.hasSolution("consult('"+Serializador.ruta+"')");
+        Variable X = new Variable("X");
+        Query query = new Query ("sol", new Term[]{X});
+        if(query.hasSolution()) {
+            this.armarGrilla(this.getSolucion(query));
+        }
+        else
+            System.out.println("No hay solucion");
+    }
+
+    private ArrayList<String> getSolucion(Query solucion){
+        Map<String, Term> soluciones = solucion.oneSolution();
+        Term termino = soluciones.get("X");
+        ArrayList<String> retorno = new ArrayList<String>();
+        for(Term actual: termino.toTermArray()){
+            String palabra = "";
+            for(Term aux: actual.toTermArray()){
+                //aca tengo un caracter
+                palabra += aux;
+            }
+            retorno.add(palabra);
+        }
+        return retorno;
+    }
+
+    private void armarGrilla(ArrayList<String> lista){
+        this.ponerPalabras(lista);
+        this.cruzada = new String[filas][col];
+        this.llenarCruzada();
+        this.escribirPalabras();
+    }
+
+    private void llenarCruzada(){
+        for(int i = 0; i < this.filas; i++){
+            for(int j = 0; j < this.col; j++){
+                this.cruzada[i][j] = " ";
+            }
+        }
+    }
+
+    private void ponerPalabras(ArrayList<String> lista){
+        Iterator<String> itLista = lista.iterator();
+        Iterator<Palabra> itPalabra = this.palabras.iterator();
+        while(itLista.hasNext() && itPalabra.hasNext()){
+            String respuesta = itLista.next();
+            Palabra palabra = itPalabra.next();
+            if(palabra.getSize() == respuesta.length()){
+                palabra.setPalabra(respuesta);
+            } else {
+                //tiro otra exception
+            }
+        }
+        if(itLista.hasNext() || itPalabra.hasNext()){
+            //lanzo exception
+        }
+    }
+
+    private void escribirPalabras(){
+        Iterator<Palabra> it = this.palabras.iterator();
+        while(it.hasNext()){
+            Palabra actual = it.next();
+            escribirPalabraEnGrilla(actual);
+        }
+    }
+
+    private void escribirPalabraEnGrilla(Palabra palabra){
+        if(palabra.isTipo("horizontal")){
+            for(int i = palabra.getInicio(), inicio = 0; i <= palabra.getFin(); i++, inicio++){
+                String pone = palabra.getPalabra().substring(inicio, inicio+1);
+                if(this.cruzada[palabra.getUbicacion()][i] == " ")
+                    this.cruzada[palabra.getUbicacion()][i] = pone;
+                else if(this.cruzada[palabra.getUbicacion()][i] != " " &&  this.cruzada[palabra.getUbicacion()][i].equals(pone)){
+                    //lanzo exception
+                    System.out.println("Error en celda");
+                }
+            }
+        }
+        else{
+            //es vertical
+            for(int i = palabra.getInicio(), inicio = 0; i <= palabra.getFin(); i++, inicio++){
+                String pone = palabra.getPalabra().substring(inicio, inicio+1);
+                if(this.cruzada[i][palabra.getUbicacion()] == " ")
+                    this.cruzada[i][palabra.getUbicacion()] = pone;
+                else if(this.cruzada[i][palabra.getUbicacion()] != " " &&  this.cruzada[i][palabra.getUbicacion()].equals(pone)){
+                    //lanzo exception
+                    System.out.println("Error en celda");
+                }
+            }
+        }
+    }
 }

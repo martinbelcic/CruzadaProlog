@@ -18,6 +18,10 @@ public class Palabra
         this.palabra = "";
     }
 
+    public int getUbicacion() {
+        return ubicacion;
+    }
+
     public int getInicio()
     {
         return inicio;

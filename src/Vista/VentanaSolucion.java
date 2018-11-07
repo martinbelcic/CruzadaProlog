@@ -130,38 +130,12 @@ public class VentanaSolucion extends javax.swing.JFrame implements InterfaceSolu
     @Override
     public void arrancar()
     {
-        this.queryProlog();
+        this.jPanelGrilla.setLayout(new GridLayout(this.grilla.getFilas(), this.grilla.getCol()));
+        this.armarGrilla();
         this.setVisible(true);
     }
-    
-    private void queryProlog(){
-        Query.hasSolution("consult('"+Serializador.ruta+"')");
-        Variable X = new Variable("X");
-        Query query = new Query ("sol", new Term[]{X});
-        if(query.hasSolution()) {
-            this.jPanelGrilla.setLayout(new GridLayout(this.grilla.getFilas(), this.grilla.getCol()));
-            this.armarGrilla(this.getSolucion(query));
-        }
-        else
-            System.out.println("No hay solucion");
-    }
 
-    private ArrayList<String> getSolucion(Query solucion){
-        Map<String, Term> soluciones = solucion.oneSolution();
-        Term termino = soluciones.get("X");
-        ArrayList<String> retorno = new ArrayList<String>();
-        for(Term actual: termino.toTermArray()){
-            String palabra = "";
-            for(Term aux: actual.toTermArray()){
-                //aca tengo un caracter
-                palabra += aux;
-            }
-            retorno.add(palabra);
-        }
-        return retorno;
-    }
-
-    private void armarGrilla(ArrayList<String> lista)
+    private void armarGrilla()
     {
         for (int i = 0; i < this.alto; i++)
         {
@@ -172,6 +146,8 @@ public class VentanaSolucion extends javax.swing.JFrame implements InterfaceSolu
                 this.lista.add(nuevo);
                 if(this.grilla.getCelda(i, j))
                 {
+                    nuevo.setText(this.grilla.getCeldaCruzada(i,j));
+                    nuevo.setBackground(Color.white);
                 }else
                 {
                     nuevo.setBackground(Color.black);
