@@ -135,10 +135,10 @@ public class Controlador implements ActionListener
     }
 
     private void guadarGratis() throws NoExistePalabraException, ErrorGratisException {
-        int i = 0, j = 0, ultimoI, ultimoJ, inicioI, inicioJ;
+        int i = 0, j = -1, ultimoI, ultimoJ, inicioI, inicioJ;
         Iterator<JTextField> it = this.gratis.getTextField().iterator();
-        JTextField actual = it.next();
-        while(it.hasNext() && actual.getText().isEmpty()){
+        JTextField actual;
+        do{
             actual = it.next();
             if(j < (this.grilla.getCol() - 1)){
                 j++;
@@ -147,24 +147,24 @@ public class Controlador implements ActionListener
                 j = 0;
                 i++;
             }
-        } 
+        } while((it.hasNext() && actual.getText().isEmpty()));
         if(!actual.getText().isEmpty()){
             String palabra = actual.getText().toLowerCase().substring(0, 1);
             inicioI = ultimoI = i;
             inicioJ = ultimoJ = j;
             while(it.hasNext()){
                 actual = it.next();
-                if(!actual.getText().isEmpty()){
-                    palabra += actual.getText().toLowerCase().substring(0, 1);
-                    ultimoI = i;
-                    ultimoJ = j;
-                }
                 if(j < (this.grilla.getCol() - 1)){
                     j++;
                 }
                 else {
                     j = 0;
                     i++;
+                }
+                if(!actual.getText().isEmpty()){
+                    palabra += actual.getText().toLowerCase().substring(0, 1);
+                    ultimoI = i;
+                    ultimoJ = j;
                 }
             }
             String tipo;
@@ -181,6 +181,9 @@ public class Controlador implements ActionListener
             Palabra encontrada = grilla.buscaPalabra(inicioI, inicioJ, tipo);
             encontrada.setPalabra(palabra);
             System.out.println(encontrada);
+        }
+        else{
+            System.out.println("UPS");
         }
     }
 }

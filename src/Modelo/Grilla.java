@@ -22,6 +22,8 @@ public class Grilla
         this.col = col;
         this.filas = filas;
         matriz = new boolean[filas][col];
+        this.cruzada = new String[filas][col];
+        this.llenarCruzada();
     }
 
     public ArrayList<Palabra> getPalabras() {
@@ -284,7 +286,7 @@ public class Grilla
         while(it.hasNext() && retorno == null)
         {
             actual = it.next();
-            if(actual.isTipo("horizontal") && actual.isDentro(inter.getJ()))
+            if(actual.isTipo("horizontal") && actual.isDentro(inter.getJ()) && actual.getUbicacion() == inter.getJ())
             {
                 retorno = actual;
             }
@@ -301,7 +303,7 @@ public class Grilla
         while(it.hasNext() && retorno == null)
         {
             actual = it.next();
-            if(actual.isTipo("vertical") && actual.isDentro(inter.getI()))
+            if(actual.isTipo("vertical") && actual.isDentro(inter.getI())  && actual.getUbicacion() == inter.getI())
             {
                 retorno = actual;
             }
@@ -421,8 +423,6 @@ public class Grilla
 
     private void armarGrilla(ArrayList<String> lista){
         this.ponerPalabras(lista);
-        this.cruzada = new String[filas][col];
-        this.llenarCruzada();
         this.escribirPalabras();
     }
 
@@ -465,7 +465,7 @@ public class Grilla
                 String pone = palabra.getPalabra().substring(inicio, inicio+1);
                 if(this.cruzada[palabra.getUbicacion()][i] == " ")
                     this.cruzada[palabra.getUbicacion()][i] = pone;
-                else if(this.cruzada[palabra.getUbicacion()][i] != " " &&  this.cruzada[palabra.getUbicacion()][i].equals(pone)){
+                else if(this.cruzada[palabra.getUbicacion()][i] != " " &&  !this.cruzada[palabra.getUbicacion()][i].equals(pone)){
                     //lanzo exception
                     System.out.println("Error en celda");
                 }
@@ -477,7 +477,7 @@ public class Grilla
                 String pone = palabra.getPalabra().substring(inicio, inicio+1);
                 if(this.cruzada[i][palabra.getUbicacion()] == " ")
                     this.cruzada[i][palabra.getUbicacion()] = pone;
-                else if(this.cruzada[i][palabra.getUbicacion()] != " " &&  this.cruzada[i][palabra.getUbicacion()].equals(pone)){
+                else if(this.cruzada[i][palabra.getUbicacion()] != " " &&  !this.cruzada[i][palabra.getUbicacion()].equals(pone)){
                     //lanzo exception
                     System.out.println("Error en celda");
                 }
