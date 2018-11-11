@@ -182,10 +182,12 @@ public class Grilla
         {
             String cabeza = "ubicacion"+i+"(X,[";
             respuesta += cabeza;
-            respuesta += this.armaCabezaProlog(i, this.lista.size())+"]):-\n";
+            respuesta += this.armaCabezaProlog(i, this.lista.size())+"]).\n";
+            /*
             respuesta += "  X = Lista,\n";
             respuesta += "  pos("+i+",N),\n";
             respuesta += "  longitud(Lista,N).\n";
+            */
             
         }
         return respuesta;
@@ -286,7 +288,7 @@ public class Grilla
         while(it.hasNext() && retorno == null)
         {
             actual = it.next();
-            if(actual.isTipo("horizontal") && actual.isDentro(inter.getJ()) && actual.getUbicacion() == inter.getJ())
+            if(actual.isTipo("horizontal") && actual.isDentro(inter.getJ()) && actual.getUbicacion() == inter.getI())
             {
                 retorno = actual;
             }
@@ -303,7 +305,7 @@ public class Grilla
         while(it.hasNext() && retorno == null)
         {
             actual = it.next();
-            if(actual.isTipo("vertical") && actual.isDentro(inter.getI())  && actual.getUbicacion() == inter.getI())
+            if(actual.isTipo("vertical") && actual.isDentro(inter.getI())  && actual.getUbicacion() == inter.getJ())
             {
                 retorno = actual;
             }
