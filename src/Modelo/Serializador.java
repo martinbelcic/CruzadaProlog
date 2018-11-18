@@ -59,7 +59,7 @@ public class Serializador
                 "\tsacarListaPosicion(ListaSolucion,PosPalVertical,NuevaSolucionAux),\n" +
                 "\tagregarListaPosicion(NuevaSolucionAux,PosPalVertical,PalabraObtenida,NuevaSolucion).\n" +
                 "\n" +
-                "sacarListaPosicion([_|Cola],1,Cola).\n" +
+                "sacarListaPosicion([[]|Cola],1,Cola).\n" +
                 "\n" +
                 "sacarListaPosicion([Cabeza|Cola],Pos,NuevaLista):-\n" +
                 "\tPos>1,\n" +
@@ -107,7 +107,8 @@ public class Serializador
                 "\n" +
                 "/* horizontal */\n" +
                 "solucion(ListaPalabras, ListaSolucion, Solucion, ListaIntersecciones):-\n" +
-                "\ttomarPalabra(ListaSolucion, Palabra,_,_),\n" +
+                "\ttomarPalabra(ListaSolucion, Palabra,Aux,_),\n" +
+                "\tAux > 0,\n" +
                 "\tnth1(PosPalabra, ListaSolucion, Palabra),\n" +
                 "\ttomaListaIntersecciones(ListaIntersecciones,Interseccion,PosPalabra,NuevaListaIntersecciones),\n" +
                 "\tinter(PosPalabra, PosPalVertical,PosLetraHorizontal,PosLetraVertical)=Interseccion,\n" +
@@ -120,7 +121,8 @@ public class Serializador
                 "\n" +
                 "/*vertical*/\n" +
                 "solucion(ListaPalabras, ListaSolucion, Solucion, ListaIntersecciones):-\n" +
-                "\ttomarPalabra(ListaSolucion, Palabra,_,_),\n" +
+                "\ttomarPalabra(ListaSolucion, Palabra,Aux,_),\n" +
+                "\tAux > 0,\n" +
                 "\tnth1(PosPalabra, ListaSolucion, Palabra),\n" +
                 "\ttomaListaIntersecciones(ListaIntersecciones,Interseccion,PosPalabra,NuevaListaIntersecciones),\n" +
                 "\tinter(PosPalHorizontal,PosPalabra, PosLetraHorizontal,PosLetraVertical)=Interseccion,\n" +

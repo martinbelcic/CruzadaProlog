@@ -495,26 +495,27 @@ public class Grilla
     }
 
     private void escribirPalabraEnGrilla(Palabra palabra){
-        if(palabra.isTipo("horizontal")){
-            for(int i = palabra.getInicio(), inicio = 0; i <= palabra.getFin(); i++, inicio++){
-                String pone = palabra.getPalabra().substring(inicio, inicio+1);
-                if(this.cruzada[palabra.getUbicacion()][i] == " ")
-                    this.cruzada[palabra.getUbicacion()][i] = pone;
-                else if(this.cruzada[palabra.getUbicacion()][i] != " " &&  !this.cruzada[palabra.getUbicacion()][i].equals(pone)){
-                    //lanzo exception
-                    System.out.println("Error en celda");
+        if(!palabra.getPalabra().isEmpty()) {
+            if (palabra.isTipo("horizontal")) {
+                for (int i = palabra.getInicio(), inicio = 0; i <= palabra.getFin(); i++, inicio++) {
+                    String pone = palabra.getPalabra().substring(inicio, inicio + 1);
+                    if (this.cruzada[palabra.getUbicacion()][i] == " ")
+                        this.cruzada[palabra.getUbicacion()][i] = pone;
+                    else if (this.cruzada[palabra.getUbicacion()][i] != " " && !this.cruzada[palabra.getUbicacion()][i].equals(pone)) {
+                        //lanzo exception
+                        System.out.println("Error en celda");
+                    }
                 }
-            }
-        }
-        else{
-            //es vertical
-            for(int i = palabra.getInicio(), inicio = 0; i <= palabra.getFin(); i++, inicio++){
-                String pone = palabra.getPalabra().substring(inicio, inicio+1);
-                if(this.cruzada[i][palabra.getUbicacion()] == " ")
-                    this.cruzada[i][palabra.getUbicacion()] = pone;
-                else if(this.cruzada[i][palabra.getUbicacion()] != " " &&  !this.cruzada[i][palabra.getUbicacion()].equals(pone)){
-                    //lanzo exception
-                    System.out.println("Error en celda");
+            } else {
+                //es vertical
+                for (int i = palabra.getInicio(), inicio = 0; i <= palabra.getFin(); i++, inicio++) {
+                    String pone = palabra.getPalabra().substring(inicio, inicio + 1);
+                    if (this.cruzada[i][palabra.getUbicacion()] == " ")
+                        this.cruzada[i][palabra.getUbicacion()] = pone;
+                    else if (this.cruzada[i][palabra.getUbicacion()] != " " && !this.cruzada[i][palabra.getUbicacion()].equals(pone)) {
+                        //lanzo exception
+                        System.out.println("Error en celda");
+                    }
                 }
             }
         }

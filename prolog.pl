@@ -1,13 +1,11 @@
-pos(1,4).
+pos(1,3).
 pos(2,4).
-pos(3,5).
-pos(4,8).
-pos(5,8).
-pos(6,7).
-pos(7,4).
-pos(8,5).
-pos(9,4).
-gratis(5,[p,i,j,a,b,a,b,a]).
+pos(3,4).
+pos(4,5).
+pos(5,4).
+pos(6,4).
+pos(7,3).
+gratis(2,[c,o,m,o]).
 interseccion(Palabra1, Palabra2, Lugar1, Lugar2):-
 	nth1(Lugar1, Palabra1, Letra),
 	nth1(Lugar2, Palabra2, Letra).
@@ -28,7 +26,7 @@ agregaSolucion(ListaSolucion,PalabraObtenida,PosPalVertical,NuevaSolucion):-
 	sacarListaPosicion(ListaSolucion,PosPalVertical,NuevaSolucionAux),
 	agregarListaPosicion(NuevaSolucionAux,PosPalVertical,PalabraObtenida,NuevaSolucion).
 
-sacarListaPosicion([_|Cola],1,Cola).
+sacarListaPosicion([[]|Cola],1,Cola).
 
 sacarListaPosicion([Cabeza|Cola],Pos,NuevaLista):-
 	Pos>1,
@@ -75,7 +73,8 @@ solucion([], Solucion, Solucion,_).
 
 /* horizontal */
 solucion(ListaPalabras, ListaSolucion, Solucion, ListaIntersecciones):-
-	tomarPalabra(ListaSolucion, Palabra,_,_),
+	tomarPalabra(ListaSolucion, Palabra,Aux,_),
+	Aux > 0,
 	nth1(PosPalabra, ListaSolucion, Palabra),
 	tomaListaIntersecciones(ListaIntersecciones,Interseccion,PosPalabra,NuevaListaIntersecciones),
 	inter(PosPalabra, PosPalVertical,PosLetraHorizontal,PosLetraVertical)=Interseccion,
@@ -88,7 +87,8 @@ solucion(ListaPalabras, ListaSolucion, Solucion, ListaIntersecciones):-
 
 /*vertical*/
 solucion(ListaPalabras, ListaSolucion, Solucion, ListaIntersecciones):-
-	tomarPalabra(ListaSolucion, Palabra,_,_),
+	tomarPalabra(ListaSolucion, Palabra,Aux,_),
+	Aux > 0,
 	nth1(PosPalabra, ListaSolucion, Palabra),
 	tomaListaIntersecciones(ListaIntersecciones,Interseccion,PosPalabra,NuevaListaIntersecciones),
 	inter(PosPalHorizontal,PosPalabra, PosLetraHorizontal,PosLetraVertical)=Interseccion,
