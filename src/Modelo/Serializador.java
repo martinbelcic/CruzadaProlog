@@ -27,16 +27,10 @@ public class Serializador
     public void escribirArchivo() throws ErrorInterseccionException {
         try {
             BufferedWriter bf =new BufferedWriter(new FileWriter(this.archivo));
-            bf.write(this.armaEstaticos());
-            //System.out.println(this.armaEstaticos());
             bf.write(this.grilla.getPalabrasTamaño());
             //System.out.println(this.grilla.getPalabrasTamaño());
-            bf.write(this.grilla.getMiembros());
-            //System.out.println(this.grilla.getMiembros());
-            bf.write(this.grilla.getPosiciones());
-            //System.out.println(this.grilla.getPosiciones());
-            bf.write(this.armaSolucion());
-            //System.out.println(this.armaSolucion());
+            bf.write(this.armaEstaticos());
+            //System.out.println(this.armaEstaticos());
             bf.close();
         } catch (IOException e) {
         }
@@ -44,28 +38,88 @@ public class Serializador
     
     private String armaEstaticos()
     {
-        String respuesta = "longitud([],0).\n" + 
-        "longitud(Lista,N):-\n" + 
-        "    Lista = [_|Col],\n" + 
-        "    longitud(Col,M),\n" + 
-        "    N is M+1.\n" + 
-        "posicion([Cabeza|_],1,Cabeza).\n" + 
-        "posicion([_|Cola],N,X):-\n" + 
-        "    N>0,\n" + 
-        "    N1 is N-1,\n" + 
-        "    posicion(Cola,N1,X1),\n" + 
-        "    X=X1.\n";
+        String respuesta = "interseccion(Palabra1, Palabra2, Lugar1, Lugar2):-\n" +
+                "\tnth1(Lugar1, Palabra1, Letra),\n" +
+                "\tnth1(Lugar2, Palabra2, Letra).\n" +
+                "\n" +
+                "tomarPalabra(Lista, Palabra, Tam, Nueva):-\n" +
+                "\tselect(Palabra, Lista, Nueva),\n" +
+                "\tlength(Palabra, Tam).\n" +
+                "\n" +
+                "tomaListaIntersecciones(ListaIntersecciones,Interseccion,PosGratis,NuevaListaIntersecciones):-\n" +
+                "\tselect(Interseccion,ListaIntersecciones,NuevaListaIntersecciones),\n" +
+                "\tInterseccion=inter(PosGratis,_,_,_).\n" +
+                "\n" +
+                "tomaListaIntersecciones(ListaIntersecciones,Interseccion,PosGratis,NuevaListaIntersecciones):-\n" +
+                "\tselect(Interseccion,ListaIntersecciones,NuevaListaIntersecciones),\n" +
+                "\tInterseccion=inter(_,PosGratis,_,_).\n" +
+                "\n" +
+                "agregaSolucion(ListaSolucion,PalabraObtenida,PosPalVertical,NuevaSolucion):-\n" +
+                "\tsacarListaPosicion(ListaSolucion,PosPalVertical,NuevaSolucionAux),\n" +
+                "\tagregarListaPosicion(NuevaSolucionAux,PosPalVertical,PalabraObtenida,NuevaSolucion).\n" +
+                "\n" +
+                "sacarListaPosicion([_|Cola],1,Cola).\n" +
+                "\n" +
+                "sacarListaPosicion([Cabeza|Cola],Pos,NuevaLista):-\n" +
+                "\tPos>1,\n" +
+                "\tPosAux is Pos -1,\n" +
+                "\tsacarListaPosicion(Cola,PosAux,NuevaListaAux),\n" +
+                "\tNuevaLista=[Cabeza|NuevaListaAux].\n" +
+                "\n" +
+                "agregarListaPosicion(Lista,1,PalabraObtenida,NuevaLista):-\n" +
+                "\tNuevaLista=[PalabraObtenida|Lista].\n" +
+                "\t\n" +
+                "agregarListaPosicion([Cabeza|Cola],Pos,PalabraObtenida,NuevaLista):-\n" +
+                "\tPos>1,\n" +
+                "\tPosAux is Pos - 1,\n" +
+                "\tagregarListaPosicion(Cola,PosAux,PalabraObtenida,NuevaListaAux),\n" +
+                "\tNuevaLista=[Cabeza|NuevaListaAux].\n" +
+                "\n" +
+                "/*horizontal*/\n" +
+                "\n" +
+                "solucionGratis(ListaPalabras, ListaSolucion, Solucion, ListaIntersecciones):-\n" +
+                "\tgratis(PosGratis,PalabraGratis),\n" +
+                "\tagregaSolucion(ListaSolucion, PalabraGratis, PosGratis, ListaSolAux),\n" +
+                "\ttomaListaIntersecciones(ListaIntersecciones,Interseccion,PosGratis,NuevaListaIntersecciones),\n" +
+                "\tinter(PosGratis,PosPalVertical,PosLetraHorizontal,PosLetraVertical)=Interseccion,\n" +
+                "\tpos(PosPalVertical,Tam),\n" +
+                "\ttomarPalabra(ListaPalabras,PalabraObtenida,Tam,NuevaListaPalabras),\n" +
+                "\tinterseccion(PalabraGratis,PalabraObtenida,PosLetraHorizontal,PosLetraVertical),\n" +
+                "\tagregaSolucion(ListaSolAux,PalabraObtenida,PosPalVertical,NuevaSolucion),\n" +
+                "\tsolucion(NuevaListaPalabras,NuevaSolucion,SolucionAux,NuevaListaIntersecciones),\n" +
+                "\tSolucion = SolucionAux.\n" +
+                "\n" +
+                "solucion([], Solucion, Solucion,_).\n" +
+                "\n" +
+                "/* horizontal */\n" +
+                "solucion(ListaPalabras, ListaSolucion, Solucion, ListaIntersecciones):-\n" +
+                "\ttomarPalabra(ListaSolucion, Palabra,_,_),\n" +
+                "\tnth1(PosPalabra, ListaSolucion, Palabra),\n" +
+                "\ttomaListaIntersecciones(ListaIntersecciones,Interseccion,PosPalabra,NuevaListaIntersecciones),\n" +
+                "\tinter(PosPalabra, PosPalVertical,PosLetraHorizontal,PosLetraVertical)=Interseccion,\n" +
+                "\tpos(PosPalVertical,Tam),\n" +
+                "\ttomarPalabra(ListaPalabras,PalabraObtenida,Tam,NuevaListaPalabras),\n" +
+                "\tinterseccion(Palabra,PalabraObtenida,PosLetraHorizontal,PosLetraVertical),\n" +
+                "\tagregaSolucion(ListaSolucion,PalabraObtenida,PosPalVertical,NuevaSolucion),\n" +
+                "\tsolucion(NuevaListaPalabras,NuevaSolucion,SolucionAux,NuevaListaIntersecciones),\n" +
+                "\tSolucion = SolucionAux.\n" +
+                "\n" +
+                "/*vertical*/\n" +
+                "solucion(ListaPalabras, ListaSolucion, Solucion, ListaIntersecciones):-\n" +
+                "\ttomarPalabra(ListaSolucion, Palabra,_,_),\n" +
+                "\tnth1(PosPalabra, ListaSolucion, Palabra),\n" +
+                "\ttomaListaIntersecciones(ListaIntersecciones,Interseccion,PosPalabra,NuevaListaIntersecciones),\n" +
+                "\tinter(PosPalHorizontal,PosPalabra, PosLetraHorizontal,PosLetraVertical)=Interseccion,\n" +
+                "\tpos(PosPalHorizontal,Tam),\n" +
+                "\ttomarPalabra(ListaPalabras,PalabraObtenida,Tam,NuevaListaPalabras),\n" +
+                "\tinterseccion(PalabraObtenida,Palabra,PosLetraHorizontal,PosLetraVertical),\n" +
+                "\tagregaSolucion(ListaSolucion,PalabraObtenida,PosPalHorizontal,NuevaSolucion),\n" +
+                "\tsolucion(NuevaListaPalabras,NuevaSolucion,SolucionAux,NuevaListaIntersecciones),\n" +
+                "\tSolucion = SolucionAux.\n" +
+                "    \n" +
+                "resolver(ListaPalabras, Aux, Solucion, ListaIntersecciones):-\n" +
+                "\tsolucionGratis(ListaPalabras, Aux, Solucion, ListaIntersecciones).";
         return respuesta;
     }
 
-    private String armaSolucion() throws ErrorInterseccionException {
-        String retorno = "sol(C):-\n";
-        try {
-            retorno += this.grilla.prologGratis();
-        } catch (NoHayGratisException e) {
-        }
-        retorno += this.grilla.getPrologPalabras();
-        retorno += this.grilla.armaPrologIntersecciones();
-        return retorno;
-    }
 }

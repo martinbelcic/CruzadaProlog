@@ -47,6 +47,10 @@ public class Grilla
     {
         this.lista.add(palabra);
     }
+
+    public void removePalabraLista(String palabra){
+        this.lista.remove(palabra);
+    }
     
     public void addInterseccion(Interseccion interseccion){
         this.intersecciones.add(interseccion);
@@ -145,6 +149,29 @@ public class Grilla
             i++;
         }
         return respuesta;
+    }
+
+    public String getListaPalabras(){
+        String retorno = "", actual;
+        Iterator<String> it = this.lista.iterator();
+        while(it.hasNext()){
+            actual = it.next();
+            retorno += this.armarListaString(actual);
+            if(it.hasNext()){
+                retorno += ",";
+            }
+        }
+        return retorno;
+    }
+
+    public String getListaVacia(){
+        String retorno = "";
+        for(int i = 0; i < this.palabras.size(); i++){
+            retorno += "[]";
+            if(i != (this.palabras.size() - 1))
+                retorno += ",";
+        }
+        return retorno;
     }
     
     /*
@@ -260,25 +287,22 @@ public class Grilla
         return palabra;
     }
     
-    public String armaPrologIntersecciones() throws ErrorInterseccionException {
+    public String getListaIntersecciones() throws ErrorInterseccionException {
         Iterator<Interseccion> it = this.intersecciones.iterator();
         Interseccion actual;
         Palabra horizontal, vertical;
         String retorno = "";
-        int i = 1;
         while(it.hasNext())
         {
             actual = it.next();
             horizontal = buscarHorizontal(actual);
             vertical = buscarVertical(actual);
-            retorno += armaPrologUnaInterseccion(actual, horizontal, vertical, i);
+            retorno += armaPrologUnaInterseccion(actual, horizontal, vertical);
             if(it.hasNext())
             {
-                retorno += ",\n";
+                retorno += ",";
             }
-            i++;
         }
-        retorno += ".";
         return retorno;
     }
     
@@ -322,13 +346,10 @@ public class Grilla
        posicion(X1,1,Letra1),
        posicion(Y1,3,Letra1),
      */
-    private String armaPrologUnaInterseccion(Interseccion actual, Palabra horizontal, Palabra vertical, int cant)
+    private String armaPrologUnaInterseccion(Interseccion actual, Palabra horizontal, Palabra vertical)
     {
         String retorno;
-        retorno = "        ubicacion"+this.posPalabra(horizontal)+"(X"+cant+",C),\n";
-        retorno += "        ubicacion"+this.posPalabra(vertical)+"(Y"+cant+",C),\n";
-        retorno += "        nth1("+(actual.getJ()-horizontal.getInicio()+1)+",X"+cant+",Letra"+cant+"),\n";
-        retorno += "        nth1("+(actual.getI()-vertical.getInicio()+1)+",Y"+cant+",Letra"+cant+")";
+        retorno = "inter("+this.posPalabra(horizontal)+","+this.posPalabra(vertical)+","+(actual.getJ()-horizontal.getInicio()+1)+","+(actual.getI()-vertical.getInicio()+1)+")";
         return retorno;
     }
     
@@ -368,7 +389,7 @@ public class Grilla
         if(actual.getPalabra().isEmpty()){
             throw new NoHayGratisException();
         }
-        retorno = "        ubicacion"+pos+"(["+this.armarListaString(actual.getPalabra())+"],C),\n";
+        retorno = "gratis("+this.posPalabra(actual)+",["+this.armarListaString(actual.getPalabra())+"]).\n";
         return retorno;
     }
     

@@ -180,6 +180,7 @@ public class Controlador implements ActionListener
             //buscar palabra y correspondiente y guardar el String
             Palabra encontrada = grilla.buscaPalabra(inicioI, inicioJ, tipo);
             encontrada.setPalabra(palabra);
+            grilla.removePalabraLista(palabra);
             System.out.println(encontrada);
         }
         else{
