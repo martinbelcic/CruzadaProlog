@@ -157,7 +157,7 @@ public class Grilla
         Iterator<String> it = this.lista.iterator();
         while(it.hasNext()){
             actual = it.next();
-            retorno += this.armarListaString(actual);
+            retorno += "["+this.armarListaString(actual)+"]";
             if(it.hasNext()){
                 retorno += ",";
             }
@@ -422,10 +422,18 @@ public class Grilla
     private void queryProlog() throws ErrorInterseccionException{
         Query.hasSolution("consult('"+Serializador.ruta+"')");
         Variable X = new Variable("X");
-        Query query = new Query ("sol", new Term[]{new Atom("["+this.getListaPalabras()+"]"),
+        String string = "resolver(["+this.getListaPalabras()+"],["+this.getListaVacia()+"],X,["+this.getListaIntersecciones()+"]).";
+        /*
+        Query query = new Query ("resolver", new Term[]{new Atom("["+this.getListaPalabras()+"]"),
                                                         new Atom ("["+this.getListaVacia()+"]"),
                                                         X,
                                                         new Atom ("["+this.getListaIntersecciones()+"]")});
+                                                        */
+        Query query = new Query(string);
+        System.out.println(string);
+        System.out.println(this.getListaPalabras());
+        System.out.println(this.getListaVacia());
+        System.out.println(this.getListaIntersecciones());
         if(query.hasSolution()) {
             this.armarGrilla(this.getSolucion(query));
         }

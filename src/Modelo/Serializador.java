@@ -91,17 +91,17 @@ public class Serializador
                 "\tSolucion = SolucionAux.\n" +
                 "\n" +
                 "/*vertical*/\n" +
-                "solucion(ListaPalabras, ListaSolucion, Solucion, ListaIntersecciones):-\n" +
-                "\ttomarPalabra(ListaSolucion, Palabra,_,_),\n" +
-                "\tnth1(PosPalabra, ListaSolucion, Palabra),\n" +
-                "\ttomaListaIntersecciones(ListaIntersecciones,Interseccion,PosPalabra,NuevaListaIntersecciones),\n" +
-                "\tinter(PosPalHorizontal,PosPalabra, PosLetraHorizontal,PosLetraVertical)=Interseccion,\n" +
+                "solucionGratis(ListaPalabras, ListaSolucion, Solucion, ListaIntersecciones):-\n" +
+                "\tgratis(PosGratis,PalabraGratis),\n" +
+                "\tagregaSolucion(ListaSolucion, PalabraGratis, PosGratis, ListaSolAux),\n" +
+                "\ttomaListaIntersecciones(ListaIntersecciones,Interseccion,PosGratis,NuevaListaIntersecciones),\n" +
+                "\tinter(PosPalHorizontal, PosGratis, PosLetraHorizontal, PosLetraVertical) = Interseccion,\n" +
                 "\tpos(PosPalHorizontal,Tam),\n" +
                 "\ttomarPalabra(ListaPalabras,PalabraObtenida,Tam,NuevaListaPalabras),\n" +
-                "\tinterseccion(PalabraObtenida,Palabra,PosLetraHorizontal,PosLetraVertical),\n" +
-                "\tagregaSolucion(ListaSolucion,PalabraObtenida,PosPalHorizontal,NuevaSolucion),\n" +
-                "\tsolucion(NuevaListaPalabras,NuevaSolucion,SolucionAux,NuevaListaIntersecciones),\n" +
-                "\tSolucion = SolucionAux.\n" +
+                "\tinterseccion(PalabraObtenida, PalabraGratis, PosLetraHorizontal, PosLetraVertical),\n" +
+                "\tagregaSolucion(ListaSolAux, PalabraObtenida, PosPalHorizontal, NuevaSolucion),\n" +
+                "\tsolucion(NuevaListaPalabras, NuevaSolucion, SolucionAux, NuevaListaIntersecciones),\n" +
+                "\tSolucion = SolucionAux." +
                 "\n" +
                 "solucion([], Solucion, Solucion,_).\n" +
                 "\n" +
