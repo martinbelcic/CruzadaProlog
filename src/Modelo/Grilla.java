@@ -1,5 +1,6 @@
 package Modelo;
 
+import org.jpl7.Atom;
 import org.jpl7.Query;
 import org.jpl7.Term;
 import org.jpl7.Variable;
@@ -414,14 +415,17 @@ public class Grilla
         }
     }
 
-    public void armarSolucion(){
+    public void armarSolucion() throws ErrorInterseccionException{
         this.queryProlog();
     }
 
-    private void queryProlog(){
+    private void queryProlog() throws ErrorInterseccionException{
         Query.hasSolution("consult('"+Serializador.ruta+"')");
         Variable X = new Variable("X");
-        Query query = new Query ("sol", new Term[]{X});
+        Query query = new Query ("sol", new Term[]{new Atom("["+this.getListaPalabras()+"]"),
+                                                        new Atom ("["+this.getListaVacia()+"]"),
+                                                        X,
+                                                        new Atom ("["+this.getListaIntersecciones()+"]")});
         if(query.hasSolution()) {
             this.armarGrilla(this.getSolucion(query));
         }

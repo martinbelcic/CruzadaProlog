@@ -1,12 +1,6 @@
 package Controlador;
 
-import Modelo.ErrorInterseccionException;
-import Modelo.Grilla;
-
-import Modelo.NoExistePalabraException;
-import Modelo.Palabra;
-
-import Modelo.Serializador;
+import Modelo.*;
 
 import Vista.InterfaceDimensiones;
 import Vista.InterfaceGratis;
@@ -105,6 +99,8 @@ public class Controlador implements ActionListener
             } catch (ErrorGratisException f) {
                     System.out.println("Error en gratis");
             } catch (ErrorInterseccionException f) {
+            } catch (NoHayGratisException e1) {
+                e1.printStackTrace();
             }
         }
         else if(e.getActionCommand().equalsIgnoreCase(InterfaceSolucion.NUEVO))

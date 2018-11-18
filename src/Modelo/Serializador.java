@@ -24,11 +24,12 @@ public class Serializador
         }
     }
     
-    public void escribirArchivo() throws ErrorInterseccionException {
+    public void escribirArchivo() throws ErrorInterseccionException, NoHayGratisException {
         try {
             BufferedWriter bf =new BufferedWriter(new FileWriter(this.archivo));
             bf.write(this.grilla.getPalabrasTamaño());
             //System.out.println(this.grilla.getPalabrasTamaño());
+            bf.write(this.grilla.prologGratis());
             bf.write(this.armaEstaticos());
             //System.out.println(this.armaEstaticos());
             bf.close();
@@ -86,6 +87,19 @@ public class Serializador
                 "\ttomarPalabra(ListaPalabras,PalabraObtenida,Tam,NuevaListaPalabras),\n" +
                 "\tinterseccion(PalabraGratis,PalabraObtenida,PosLetraHorizontal,PosLetraVertical),\n" +
                 "\tagregaSolucion(ListaSolAux,PalabraObtenida,PosPalVertical,NuevaSolucion),\n" +
+                "\tsolucion(NuevaListaPalabras,NuevaSolucion,SolucionAux,NuevaListaIntersecciones),\n" +
+                "\tSolucion = SolucionAux.\n" +
+                "\n" +
+                "/*vertical*/\n" +
+                "solucion(ListaPalabras, ListaSolucion, Solucion, ListaIntersecciones):-\n" +
+                "\ttomarPalabra(ListaSolucion, Palabra,_,_),\n" +
+                "\tnth1(PosPalabra, ListaSolucion, Palabra),\n" +
+                "\ttomaListaIntersecciones(ListaIntersecciones,Interseccion,PosPalabra,NuevaListaIntersecciones),\n" +
+                "\tinter(PosPalHorizontal,PosPalabra, PosLetraHorizontal,PosLetraVertical)=Interseccion,\n" +
+                "\tpos(PosPalHorizontal,Tam),\n" +
+                "\ttomarPalabra(ListaPalabras,PalabraObtenida,Tam,NuevaListaPalabras),\n" +
+                "\tinterseccion(PalabraObtenida,Palabra,PosLetraHorizontal,PosLetraVertical),\n" +
+                "\tagregaSolucion(ListaSolucion,PalabraObtenida,PosPalHorizontal,NuevaSolucion),\n" +
                 "\tsolucion(NuevaListaPalabras,NuevaSolucion,SolucionAux,NuevaListaIntersecciones),\n" +
                 "\tSolucion = SolucionAux.\n" +
                 "\n" +
