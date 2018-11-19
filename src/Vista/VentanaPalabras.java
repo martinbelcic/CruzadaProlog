@@ -3,6 +3,8 @@ package Vista;
 
 import Controlador.Controlador;
 
+import javax.swing.*;
+
 /**
  *
  * @author martin
@@ -148,6 +150,7 @@ public class VentanaPalabras extends javax.swing.JFrame implements InterfacePala
     public void arrancar()
     {
         this.setVisible(true);
+        this.jButtonAceptar.setEnabled(false);
     }
 
     @Override
@@ -160,5 +163,11 @@ public class VentanaPalabras extends javax.swing.JFrame implements InterfacePala
     public void limpiar()
     {
         this.jTextFieldPalabra.setText("");
+    }
+
+    @Override
+    public void activarBotonContinuar(){
+        this.jButtonAceptar.setEnabled(true);
+        this.jButtonAgregar.setEnabled(false);
     }
 }

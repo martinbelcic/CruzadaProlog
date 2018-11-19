@@ -110,11 +110,12 @@ public class Serializador
                 "\ttomarPalabra(ListaSolucion, Palabra,Aux,_),\n" +
                 "\tAux > 0,\n" +
                 "\tnth1(PosPalabra, ListaSolucion, Palabra),\n" +
-                "\ttomaListaIntersecciones(ListaIntersecciones,Interseccion,PosPalabra,NuevaListaIntersecciones),\n" +
+                "\ttomaListaIntersecciones(ListaIntersecciones,Interseccion,PosPalabra,AuxListaIntersecciones),\n" +
                 "\tinter(PosPalabra, PosPalVertical,PosLetraHorizontal,PosLetraVertical)=Interseccion,\n" +
                 "\tpos(PosPalVertical,Tam),\n" +
                 "\ttomarPalabra(ListaPalabras,PalabraObtenida,Tam,NuevaListaPalabras),\n" +
                 "\tinterseccion(Palabra,PalabraObtenida,PosLetraHorizontal,PosLetraVertical),\n" +
+                "\tverificaInterseccionesVertical(PalabraObtenida, PosPalVertical, ListaSolucion, AuxListaIntersecciones, NuevaListaIntersecciones),\n" +
                 "\tagregaSolucion(ListaSolucion,PalabraObtenida,PosPalVertical,NuevaSolucion),\n" +
                 "\tsolucion(NuevaListaPalabras,NuevaSolucion,SolucionAux,NuevaListaIntersecciones),\n" +
                 "\tSolucion = SolucionAux.\n" +
@@ -124,17 +125,62 @@ public class Serializador
                 "\ttomarPalabra(ListaSolucion, Palabra,Aux,_),\n" +
                 "\tAux > 0,\n" +
                 "\tnth1(PosPalabra, ListaSolucion, Palabra),\n" +
-                "\ttomaListaIntersecciones(ListaIntersecciones,Interseccion,PosPalabra,NuevaListaIntersecciones),\n" +
+                "\ttomaListaIntersecciones(ListaIntersecciones,Interseccion,PosPalabra,AuxListaIntersecciones),\n" +
                 "\tinter(PosPalHorizontal,PosPalabra, PosLetraHorizontal,PosLetraVertical)=Interseccion,\n" +
                 "\tpos(PosPalHorizontal,Tam),\n" +
                 "\ttomarPalabra(ListaPalabras,PalabraObtenida,Tam,NuevaListaPalabras),\n" +
                 "\tinterseccion(PalabraObtenida,Palabra,PosLetraHorizontal,PosLetraVertical),\n" +
+                "\tverificaInterseccionesHorizontal(PalabraObtenida, PosPalHorizontal, ListaSolucion, AuxListaIntersecciones, NuevaListaIntersecciones),\n" +
                 "\tagregaSolucion(ListaSolucion,PalabraObtenida,PosPalHorizontal,NuevaSolucion),\n" +
                 "\tsolucion(NuevaListaPalabras,NuevaSolucion,SolucionAux,NuevaListaIntersecciones),\n" +
                 "\tSolucion = SolucionAux.\n" +
                 "    \n" +
                 "resolver(ListaPalabras, Aux, Solucion, ListaIntersecciones):-\n" +
-                "\tsolucionGratis(ListaPalabras, Aux, Solucion, ListaIntersecciones).";
+                "\tsolucionGratis(ListaPalabras, Aux, Solucion, ListaIntersecciones).\n" +
+                "\n" +
+                "noHayInterseccionesHorizontal(_,[]).\n" +
+                "noHayInterseccionesHorizontal(PosPal,[Cabeza|Cola]):-\n" +
+                "\tCabeza = inter(Pos,_,_,_),\n" +
+                "\tPosPal \\= Pos,\n" +
+                "\tnoHayInterseccionesHorizontal(PosPal, Cola).\t\n" +
+                "\n" +
+                "verificaInterseccionesHorizontal(_,PosPal,_, ListaIntersecciones, ListaIntersecciones):-\n" +
+                "\tnoHayInterseccionesHorizontal(PosPal,ListaIntersecciones).\n" +
+                "\n" +
+                "verificaInterseccionesHorizontal(Palabra, PosPal, ListaSolucion, ListaIntersecciones, NuevaListaIntersecciones):-\n" +
+                "\ttomaListaIntersecciones(ListaIntersecciones, inter(PosPal, PosOtra, PosLetraPal, PosLetraOtra), PosPal, AuxListaIntersecciones),\n" +
+                "\tnth1(PosOtra, ListaSolucion, Otra),\n" +
+                "\tinterseccion(Palabra, Otra, PosLetraPal, PosLetraOtra),\n" +
+                "\tverificaInterseccionesHorizontal(Palabra, PosPal, ListaSolucion, AuxListaIntersecciones, Aux2ListaIntersecciones),\n" +
+                "\tNuevaListaIntersecciones = Aux2ListaIntersecciones.\n" +
+                "\n" +
+                "verificaInterseccionesHorizontal(Palabra, PosPal, ListaSolucion, ListaIntersecciones, NuevaListaIntersecciones):-\n" +
+                "\ttomaListaIntersecciones(ListaIntersecciones, inter(PosPal, PosOtra, PosLetraPal, PosLetraOtra), PosPal, AuxListaIntersecciones),\n" +
+                "\tnth1(PosOtra, ListaSolucion, []),\n" +
+                "\tverificaInterseccionesHorizontal(Palabra, PosPal, ListaSolucion, AuxListaIntersecciones, Aux2ListaIntersecciones),\n" +
+                "\tNuevaListaIntersecciones = [inter(PosPal, PosOtra, PosLetraPal, PosLetraOtra)|Aux2ListaIntersecciones].\n" +
+                "\n" +
+                "noHayInterseccionesVertical(_,[]).\n" +
+                "noHayInterseccionesVertical(PosPal,[Cabeza|Cola]):-\n" +
+                "\tCabeza = inter(_,Pos,_,_),\n" +
+                "\tPosPal \\= Pos,\n" +
+                "\tnoHayInterseccionesVertical(PosPal, Cola).\n" +
+                "\n" +
+                "verificaInterseccionesVertical(_,PosPal,_, ListaIntersecciones, ListaIntersecciones):-\n" +
+                "\tnoHayInterseccionesVertical(PosPal,ListaIntersecciones).\n" +
+                "\n" +
+                "verificaInterseccionesVertical(Palabra, PosPal, ListaSolucion, ListaIntersecciones, NuevaListaIntersecciones):-\n" +
+                "\ttomaListaIntersecciones(ListaIntersecciones, inter(PosOtra, PosPal, PosLetraOtra, PosLetraPal), PosPal, AuxListaIntersecciones),\n" +
+                "\tnth1(PosOtra, ListaSolucion, Otra),\n" +
+                "\tinterseccion(Otra, Palabra, PosLetraOtra, PosLetraPal),\n" +
+                "\tverificaInterseccionesVertical(Palabra, PosPal, ListaSolucion, AuxListaIntersecciones, Aux2ListaIntersecciones),\n" +
+                "\tNuevaListaIntersecciones = Aux2ListaIntersecciones.\n" +
+                "\n" +
+                "verificaInterseccionesVertical(Palabra, PosPal, ListaSolucion, ListaIntersecciones, NuevaListaIntersecciones):-\n" +
+                "\ttomaListaIntersecciones(ListaIntersecciones, inter(PosOtra, PosPal, PosLetraOtra, PosLetraPal), PosPal, AuxListaIntersecciones),\n" +
+                "\tnth1(PosOtra, ListaSolucion, []),\n" +
+                "\tverificaInterseccionesVertical(Palabra, PosPal, ListaSolucion, AuxListaIntersecciones, Aux2ListaIntersecciones),\n" +
+                "\tNuevaListaIntersecciones = [inter(PosOtra, PosPal, PosLetraOtra, PosLetraPal)|Aux2ListaIntersecciones].";
         return respuesta;
     }
 

@@ -4,8 +4,11 @@
     <list default="true" id="4a24244b-4e8d-4b18-aa4e-16f28ec1d3bf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/prolog.pl" beforeDir="false" afterPath="$PROJECT_DIR$/prolog.pl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controlador/Controlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controlador/Controlador.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Modelo/Grilla.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelo/Grilla.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Modelo/Serializador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelo/Serializador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Vista/InterfacePalabras.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vista/InterfacePalabras.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Vista/VentanaPalabras.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vista/VentanaPalabras.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,67 +21,51 @@
     <session id="-909180026">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="3" />
           <entry key="project.open.time.1" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.open.time.27" value="1" />
+          <entry key="project.open.time.28" value="1" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="2" />
+          <entry key="java" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="2" />
+          <entry key="JAVA" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="305" />
+          <entry key="java" value="683" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="305" />
+          <entry key="JAVA" value="683" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Modelo/Grilla.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="129">
-              <caret line="501" column="71" lean-forward="true" selection-start-line="501" selection-start-column="71" selection-end-line="501" selection-end-column="71" />
+            <state relative-caret-position="420">
+              <caret line="41" column="41" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#354#362#0" expanded="true" />
-                <element signature="e#421#430#0" expanded="true" />
-                <element signature="e#500#514#0" expanded="true" />
                 <element signature="e#789#790#0" expanded="true" />
                 <element signature="e#820#821#0" expanded="true" />
                 <element signature="e#847#848#0" expanded="true" />
                 <element signature="e#873#874#0" expanded="true" />
                 <element signature="e#902#903#0" expanded="true" />
                 <element signature="e#930#931#0" expanded="true" />
-                <element signature="e#981#982#0" expanded="true" />
-                <element signature="e#1023#1024#0" expanded="true" />
-                <element signature="e#1082#1083#0" expanded="true" />
-                <element signature="e#1121#1122#0" expanded="true" />
-                <element signature="e#1174#1175#0" expanded="true" />
-                <element signature="e#1216#1217#0" expanded="true" />
-                <element signature="e#1281#1282#0" expanded="true" />
-                <element signature="e#1334#1335#0" expanded="true" />
-                <element signature="e#1392#1393#0" expanded="true" />
-                <element signature="e#1437#1438#0" expanded="true" />
-                <element signature="e#1491#1492#0" expanded="true" />
-                <element signature="e#1531#1532#0" expanded="true" />
-                <element signature="e#1579#1580#0" expanded="true" />
-                <element signature="e#1619#1620#0" expanded="true" />
-                <element signature="e#1669#1670#0" expanded="true" />
-                <element signature="e#1710#1711#0" expanded="true" />
+                <element signature="e#1001#1002#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -87,8 +74,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Modelo/Serializador.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="61" column="39" selection-start-line="61" selection-start-column="39" selection-end-line="61" selection-end-column="39" />
+            <state relative-caret-position="203">
+              <caret line="163" column="37" selection-start-line="163" selection-start-column="37" selection-end-line="163" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Controlador/Controlador.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="115" selection-start-line="115" selection-end-line="115" />
             </state>
           </provider>
         </entry>
@@ -102,6 +98,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/Modelo/Grilla.java" />
+        <option value="$PROJECT_DIR$/src/Controlador/Controlador.java" />
+        <option value="$PROJECT_DIR$/src/Vista/InterfacePalabras.java" />
+        <option value="$PROJECT_DIR$/src/Vista/VentanaPalabras.java" />
         <option value="$PROJECT_DIR$/src/Modelo/Serializador.java" />
       </list>
     </option>
@@ -124,6 +123,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -140,17 +140,28 @@
               <item name="CruzadaProlog" type="b2602c69:ProjectViewProjectNode" />
               <item name="CruzadaProlog" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Controlador" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CruzadaProlog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CruzadaProlog" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Modelo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CruzadaProlog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CruzadaProlog" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Vista" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542580364799" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542634806009" />
     <property name="last_opened_file_path" value="/usr/lib/swi-prolog/lib/jpl.jar!/" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
@@ -206,7 +217,7 @@
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1366" height="741" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25757575" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -214,8 +225,8 @@
       <window_info id="UI Designer" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49924242" weight="0.3284553" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3284553" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49924242" weight="0.24552846" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -237,49 +248,67 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Controlador/Controlador.java</url>
+          <line>75</line>
+          <properties />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Modelo/Grilla.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="501" column="71" lean-forward="true" selection-start-line="501" selection-start-column="71" selection-end-line="501" selection-end-column="71" />
+        <state relative-caret-position="420">
+          <caret line="41" column="41" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#354#362#0" expanded="true" />
-            <element signature="e#421#430#0" expanded="true" />
-            <element signature="e#500#514#0" expanded="true" />
             <element signature="e#789#790#0" expanded="true" />
             <element signature="e#820#821#0" expanded="true" />
             <element signature="e#847#848#0" expanded="true" />
             <element signature="e#873#874#0" expanded="true" />
             <element signature="e#902#903#0" expanded="true" />
             <element signature="e#930#931#0" expanded="true" />
-            <element signature="e#981#982#0" expanded="true" />
-            <element signature="e#1023#1024#0" expanded="true" />
-            <element signature="e#1082#1083#0" expanded="true" />
-            <element signature="e#1121#1122#0" expanded="true" />
-            <element signature="e#1174#1175#0" expanded="true" />
-            <element signature="e#1216#1217#0" expanded="true" />
-            <element signature="e#1281#1282#0" expanded="true" />
-            <element signature="e#1334#1335#0" expanded="true" />
-            <element signature="e#1392#1393#0" expanded="true" />
-            <element signature="e#1437#1438#0" expanded="true" />
-            <element signature="e#1491#1492#0" expanded="true" />
-            <element signature="e#1531#1532#0" expanded="true" />
-            <element signature="e#1579#1580#0" expanded="true" />
-            <element signature="e#1619#1620#0" expanded="true" />
-            <element signature="e#1669#1670#0" expanded="true" />
-            <element signature="e#1710#1711#0" expanded="true" />
+            <element signature="e#1001#1002#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Vista/VentanaPalabras.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="170" column="27" selection-start-line="170" selection-start-column="27" selection-end-line="170" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Vista/InterfacePalabras.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="33" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controlador/Controlador.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="115" selection-start-line="115" selection-end-line="115" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Modelo/Serializador.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="61" column="39" selection-start-line="61" selection-start-column="39" selection-end-line="61" selection-end-column="39" />
+        <state relative-caret-position="203">
+          <caret line="163" column="37" selection-start-line="163" selection-start-column="37" selection-end-line="163" selection-end-column="37" />
         </state>
       </provider>
     </entry>

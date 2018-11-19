@@ -39,6 +39,10 @@ public class Grilla
         return filas;
     }
 
+    public ArrayList<String> getLista() {
+        return lista;
+    }
+
     public void addPalabra(Palabra palabra)
     {
         this.palabras.add(palabra);

@@ -75,6 +75,9 @@ public class Controlador implements ActionListener
             String palabra = palabras.getPalabra();
             grilla.addPalabraLista(palabra.toLowerCase());
             palabras.limpiar();
+            if(grilla.getPalabras().size() == grilla.getLista().size()){
+                palabras.activarBotonContinuar();
+            }
         }
         else if(e.getActionCommand().equalsIgnoreCase(InterfacePalabras.ACEPTAR)){
             gratis = new VentanaGratis(this.grilla.getFilas(), this.grilla.getCol(), this.grilla);
