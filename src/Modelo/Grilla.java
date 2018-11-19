@@ -39,6 +39,10 @@ public class Grilla
         return filas;
     }
 
+    public ArrayList<String> getLista() {
+        return lista;
+    }
+
     public void addPalabra(Palabra palabra)
     {
         this.palabras.add(palabra);
@@ -157,7 +161,7 @@ public class Grilla
         Iterator<String> it = this.lista.iterator();
         while(it.hasNext()){
             actual = it.next();
-            retorno += this.armarListaString(actual);
+            retorno += "["+this.armarListaString(actual)+"]";
             if(it.hasNext()){
                 retorno += ",";
             }
@@ -422,10 +426,18 @@ public class Grilla
     private void queryProlog() throws ErrorInterseccionException{
         Query.hasSolution("consult('"+Serializador.ruta+"')");
         Variable X = new Variable("X");
-        Query query = new Query ("sol", new Term[]{new Atom("["+this.getListaPalabras()+"]"),
+        String string = "resolver(["+this.getListaPalabras()+"],["+this.getListaVacia()+"],X,["+this.getListaIntersecciones()+"]).";
+        /*
+        Query query = new Query ("resolver", new Term[]{new Atom("["+this.getListaPalabras()+"]"),
                                                         new Atom ("["+this.getListaVacia()+"]"),
                                                         X,
                                                         new Atom ("["+this.getListaIntersecciones()+"]")});
+                                                        */
+        Query query = new Query(string);
+        System.out.println(string);
+        System.out.println(this.getListaPalabras());
+        System.out.println(this.getListaVacia());
+        System.out.println(this.getListaIntersecciones());
         if(query.hasSolution()) {
             this.armarGrilla(this.getSolucion(query));
         }
@@ -487,26 +499,27 @@ public class Grilla
     }
 
     private void escribirPalabraEnGrilla(Palabra palabra){
-        if(palabra.isTipo("horizontal")){
-            for(int i = palabra.getInicio(), inicio = 0; i <= palabra.getFin(); i++, inicio++){
-                String pone = palabra.getPalabra().substring(inicio, inicio+1);
-                if(this.cruzada[palabra.getUbicacion()][i] == " ")
-                    this.cruzada[palabra.getUbicacion()][i] = pone;
-                else if(this.cruzada[palabra.getUbicacion()][i] != " " &&  !this.cruzada[palabra.getUbicacion()][i].equals(pone)){
-                    //lanzo exception
-                    System.out.println("Error en celda");
+        if(!palabra.getPalabra().isEmpty()) {
+            if (palabra.isTipo("horizontal")) {
+                for (int i = palabra.getInicio(), inicio = 0; i <= palabra.getFin(); i++, inicio++) {
+                    String pone = palabra.getPalabra().substring(inicio, inicio + 1);
+                    if (this.cruzada[palabra.getUbicacion()][i] == " ")
+                        this.cruzada[palabra.getUbicacion()][i] = pone;
+                    else if (this.cruzada[palabra.getUbicacion()][i] != " " && !this.cruzada[palabra.getUbicacion()][i].equals(pone)) {
+                        //lanzo exception
+                        System.out.println("Error en celda");
+                    }
                 }
-            }
-        }
-        else{
-            //es vertical
-            for(int i = palabra.getInicio(), inicio = 0; i <= palabra.getFin(); i++, inicio++){
-                String pone = palabra.getPalabra().substring(inicio, inicio+1);
-                if(this.cruzada[i][palabra.getUbicacion()] == " ")
-                    this.cruzada[i][palabra.getUbicacion()] = pone;
-                else if(this.cruzada[i][palabra.getUbicacion()] != " " &&  !this.cruzada[i][palabra.getUbicacion()].equals(pone)){
-                    //lanzo exception
-                    System.out.println("Error en celda");
+            } else {
+                //es vertical
+                for (int i = palabra.getInicio(), inicio = 0; i <= palabra.getFin(); i++, inicio++) {
+                    String pone = palabra.getPalabra().substring(inicio, inicio + 1);
+                    if (this.cruzada[i][palabra.getUbicacion()] == " ")
+                        this.cruzada[i][palabra.getUbicacion()] = pone;
+                    else if (this.cruzada[i][palabra.getUbicacion()] != " " && !this.cruzada[i][palabra.getUbicacion()].equals(pone)) {
+                        //lanzo exception
+                        System.out.println("Error en celda");
+                    }
                 }
             }
         }

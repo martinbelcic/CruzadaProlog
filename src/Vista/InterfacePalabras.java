@@ -8,6 +8,7 @@ public interface InterfacePalabras {
     void arrancar();
     void matar();
     void limpiar();
+    void activarBotonContinuar();
     
     final static String ACEPTAR = "AceptarPal";
     final static String AGREGAR = "AgregarPal";
