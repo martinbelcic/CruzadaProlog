@@ -1,5 +1,5 @@
-pos(1,7).
-pos(2,5).
+pos(1,6).
+pos(2,6).
 pos(3,5).
 pos(4,7).
 pos(5,8).
@@ -10,23 +10,23 @@ pos(9,4).
 pos(10,8).
 pos(11,7).
 pos(12,5).
-pos(13,5).
-pos(14,7).
+pos(13,6).
+pos(14,6).
 pos(15,5).
 pos(16,7).
 pos(17,7).
 pos(18,5).
 pos(19,8).
 pos(20,4).
-pos(21,5).
-pos(22,5).
+pos(21,4).
+pos(22,4).
 pos(23,4).
 pos(24,8).
 pos(25,5).
 pos(26,7).
 pos(27,7).
 pos(28,5).
-gratis(23,[n,i,ñ,o]).
+gratis(2,[a,f,e,c,t,o]).
 interseccion(Palabra1, Palabra2, Lugar1, Lugar2):-
 	nth1(Lugar1, Palabra1, Letra),
 	nth1(Lugar2, Palabra2, Letra).
@@ -37,15 +37,21 @@ tomarPalabra(Lista, Palabra, Tam, Nueva):-
 
 tomaListaIntersecciones(ListaIntersecciones,Interseccion,PosGratis,NuevaListaIntersecciones):-
 	select(Interseccion,ListaIntersecciones,NuevaListaIntersecciones),
-	Interseccion=inter(PosGratis,_,_,_).
+	Interseccion=inter(PosGratis,_,_,_),!.
 
 tomaListaIntersecciones(ListaIntersecciones,Interseccion,PosGratis,NuevaListaIntersecciones):-
 	select(Interseccion,ListaIntersecciones,NuevaListaIntersecciones),
-	Interseccion=inter(_,PosGratis,_,_).
+	Interseccion=inter(_,PosGratis,_,_),!.
 
-agregaSolucion(ListaSolucion,PalabraObtenida,PosPalVertical,NuevaSolucion):-
-	sacarListaPosicion(ListaSolucion,PosPalVertical,NuevaSolucionAux),
-	agregarListaPosicion(NuevaSolucionAux,PosPalVertical,PalabraObtenida,NuevaSolucion).
+agregaSolucionHorizontal(ListaSolucion,PalabraObtenida,PosPal,NuevaSolucion, ListaIntersecciones, NuevaListaIntersecciones):-
+	verificaInterseccionesHorizontal(PalabraObtenida, PosPal, ListaSolucion, ListaIntersecciones, NuevaListaIntersecciones),
+	sacarListaPosicion(ListaSolucion,PosPal,NuevaSolucionAux),
+	agregarListaPosicion(NuevaSolucionAux,PosPal,PalabraObtenida,NuevaSolucion).
+
+agregaSolucionVertical(ListaSolucion,PalabraObtenida,PosPal,NuevaSolucion, ListaIntersecciones, NuevaListaIntersecciones):-
+	verificaInterseccionesVertical(PalabraObtenida, PosPal, ListaSolucion, ListaIntersecciones, NuevaListaIntersecciones),
+	sacarListaPosicion(ListaSolucion,PosPal,NuevaSolucionAux),
+	agregarListaPosicion(NuevaSolucionAux,PosPal,PalabraObtenida,NuevaSolucion).
 
 sacarListaPosicion([[]|Cola],1,Cola).
 
@@ -68,26 +74,26 @@ agregarListaPosicion([Cabeza|Cola],Pos,PalabraObtenida,NuevaLista):-
 
 solucionGratis(ListaPalabras, ListaSolucion, Solucion, ListaIntersecciones):-
 	gratis(PosGratis,PalabraGratis),
-	agregaSolucion(ListaSolucion, PalabraGratis, PosGratis, ListaSolAux),
-	tomaListaIntersecciones(ListaIntersecciones,Interseccion,PosGratis,NuevaListaIntersecciones),
+	agregaSolucionHorizontal(ListaSolucion, PalabraGratis, PosGratis, ListaSolAux, ListaIntersecciones,_),
+	tomaListaIntersecciones(ListaIntersecciones,Interseccion,PosGratis, AuxListaIntersecciones),
 	inter(PosGratis,PosPalVertical,PosLetraHorizontal,PosLetraVertical)=Interseccion,
 	pos(PosPalVertical,Tam),
 	tomarPalabra(ListaPalabras,PalabraObtenida,Tam,NuevaListaPalabras),
 	interseccion(PalabraGratis,PalabraObtenida,PosLetraHorizontal,PosLetraVertical),
-	agregaSolucion(ListaSolAux,PalabraObtenida,PosPalVertical,NuevaSolucion),
+	agregaSolucionVertical(ListaSolAux,PalabraObtenida,PosPalVertical,NuevaSolucion, AuxListaIntersecciones, NuevaListaIntersecciones),
 	solucion(NuevaListaPalabras,NuevaSolucion,SolucionAux,NuevaListaIntersecciones),
 	Solucion = SolucionAux.
 
 /*vertical*/
 solucionGratis(ListaPalabras, ListaSolucion, Solucion, ListaIntersecciones):-
 	gratis(PosGratis,PalabraGratis),
-	agregaSolucion(ListaSolucion, PalabraGratis, PosGratis, ListaSolAux),
-	tomaListaIntersecciones(ListaIntersecciones,Interseccion,PosGratis,NuevaListaIntersecciones),
+	agregaSolucionVertical(ListaSolucion, PalabraGratis, PosGratis, ListaSolAux, ListaIntersecciones,_),!,
+	tomaListaIntersecciones(ListaIntersecciones,Interseccion,PosGratis,AuxListaIntersecciones),
 	inter(PosPalHorizontal, PosGratis, PosLetraHorizontal, PosLetraVertical) = Interseccion,
 	pos(PosPalHorizontal,Tam),
 	tomarPalabra(ListaPalabras,PalabraObtenida,Tam,NuevaListaPalabras),
 	interseccion(PalabraObtenida, PalabraGratis, PosLetraHorizontal, PosLetraVertical),
-	agregaSolucion(ListaSolAux, PalabraObtenida, PosPalHorizontal, NuevaSolucion),
+	agregaSolucionHorizontal(ListaSolAux, PalabraObtenida, PosPalHorizontal, NuevaSolucion, AuxListaIntersecciones, NuevaListaIntersecciones),
 	solucion(NuevaListaPalabras, NuevaSolucion, SolucionAux, NuevaListaIntersecciones),
 	Solucion = SolucionAux.
 solucion([], Solucion, Solucion,_).
@@ -102,8 +108,7 @@ solucion(ListaPalabras, ListaSolucion, Solucion, ListaIntersecciones):-
 	pos(PosPalVertical,Tam),
 	tomarPalabra(ListaPalabras,PalabraObtenida,Tam,NuevaListaPalabras),
 	interseccion(Palabra,PalabraObtenida,PosLetraHorizontal,PosLetraVertical),
-	verificaInterseccionesVertical(PalabraObtenida, PosPalVertical, ListaSolucion, AuxListaIntersecciones, NuevaListaIntersecciones),
-	agregaSolucion(ListaSolucion,PalabraObtenida,PosPalVertical,NuevaSolucion),
+	agregaSolucionVertical(ListaSolucion,PalabraObtenida,PosPalVertical,NuevaSolucion, AuxListaIntersecciones, NuevaListaIntersecciones),
 	solucion(NuevaListaPalabras,NuevaSolucion,SolucionAux,NuevaListaIntersecciones),
 	Solucion = SolucionAux.
 
@@ -112,13 +117,12 @@ solucion(ListaPalabras, ListaSolucion, Solucion, ListaIntersecciones):-
 	tomarPalabra(ListaSolucion, Palabra,Aux,_),
 	Aux > 0,
 	nth1(PosPalabra, ListaSolucion, Palabra),
-	tomaListaIntersecciones(ListaIntersecciones,Interseccion,PosPalabra,AuxListaIntersecciones),
+	tomaListaIntersecciones(ListaIntersecciones,Interseccion,PosPalabra,AuxListaIntersecciones),!,
 	inter(PosPalHorizontal,PosPalabra, PosLetraHorizontal,PosLetraVertical)=Interseccion,
 	pos(PosPalHorizontal,Tam),
 	tomarPalabra(ListaPalabras,PalabraObtenida,Tam,NuevaListaPalabras),
 	interseccion(PalabraObtenida,Palabra,PosLetraHorizontal,PosLetraVertical),
-	verificaInterseccionesHorizontal(PalabraObtenida, PosPalHorizontal, ListaSolucion, AuxListaIntersecciones, NuevaListaIntersecciones),
-	agregaSolucion(ListaSolucion,PalabraObtenida,PosPalHorizontal,NuevaSolucion),
+	agregaSolucionHorizontal(ListaSolucion,PalabraObtenida,PosPalHorizontal,NuevaSolucion, AuxListaIntersecciones, NuevaListaIntersecciones),
 	solucion(NuevaListaPalabras,NuevaSolucion,SolucionAux,NuevaListaIntersecciones),
 	Solucion = SolucionAux.
     

@@ -49,15 +49,21 @@ public class Serializador
                 "\n" +
                 "tomaListaIntersecciones(ListaIntersecciones,Interseccion,PosGratis,NuevaListaIntersecciones):-\n" +
                 "\tselect(Interseccion,ListaIntersecciones,NuevaListaIntersecciones),\n" +
-                "\tInterseccion=inter(PosGratis,_,_,_).\n" +
+                "\tInterseccion=inter(PosGratis,_,_,_),!.\n" +
                 "\n" +
                 "tomaListaIntersecciones(ListaIntersecciones,Interseccion,PosGratis,NuevaListaIntersecciones):-\n" +
                 "\tselect(Interseccion,ListaIntersecciones,NuevaListaIntersecciones),\n" +
-                "\tInterseccion=inter(_,PosGratis,_,_).\n" +
+                "\tInterseccion=inter(_,PosGratis,_,_),!.\n" +
                 "\n" +
-                "agregaSolucion(ListaSolucion,PalabraObtenida,PosPalVertical,NuevaSolucion):-\n" +
-                "\tsacarListaPosicion(ListaSolucion,PosPalVertical,NuevaSolucionAux),\n" +
-                "\tagregarListaPosicion(NuevaSolucionAux,PosPalVertical,PalabraObtenida,NuevaSolucion).\n" +
+                "agregaSolucionHorizontal(ListaSolucion,PalabraObtenida,PosPal,NuevaSolucion, ListaIntersecciones, NuevaListaIntersecciones):-\n" +
+                "\tverificaInterseccionesHorizontal(PalabraObtenida, PosPal, ListaSolucion, ListaIntersecciones, NuevaListaIntersecciones),\n" +
+                "\tsacarListaPosicion(ListaSolucion,PosPal,NuevaSolucionAux),\n" +
+                "\tagregarListaPosicion(NuevaSolucionAux,PosPal,PalabraObtenida,NuevaSolucion).\n" +
+                "\n" +
+                "agregaSolucionVertical(ListaSolucion,PalabraObtenida,PosPal,NuevaSolucion, ListaIntersecciones, NuevaListaIntersecciones):-\n" +
+                "\tverificaInterseccionesVertical(PalabraObtenida, PosPal, ListaSolucion, ListaIntersecciones, NuevaListaIntersecciones),\n" +
+                "\tsacarListaPosicion(ListaSolucion,PosPal,NuevaSolucionAux),\n" +
+                "\tagregarListaPosicion(NuevaSolucionAux,PosPal,PalabraObtenida,NuevaSolucion).\n" +
                 "\n" +
                 "sacarListaPosicion([[]|Cola],1,Cola).\n" +
                 "\n" +
@@ -80,29 +86,28 @@ public class Serializador
                 "\n" +
                 "solucionGratis(ListaPalabras, ListaSolucion, Solucion, ListaIntersecciones):-\n" +
                 "\tgratis(PosGratis,PalabraGratis),\n" +
-                "\tagregaSolucion(ListaSolucion, PalabraGratis, PosGratis, ListaSolAux),\n" +
-                "\ttomaListaIntersecciones(ListaIntersecciones,Interseccion,PosGratis,NuevaListaIntersecciones),\n" +
+                "\tagregaSolucionHorizontal(ListaSolucion, PalabraGratis, PosGratis, ListaSolAux, ListaIntersecciones,_),\n" +
+                "\ttomaListaIntersecciones(ListaIntersecciones,Interseccion,PosGratis, AuxListaIntersecciones),\n" +
                 "\tinter(PosGratis,PosPalVertical,PosLetraHorizontal,PosLetraVertical)=Interseccion,\n" +
                 "\tpos(PosPalVertical,Tam),\n" +
                 "\ttomarPalabra(ListaPalabras,PalabraObtenida,Tam,NuevaListaPalabras),\n" +
                 "\tinterseccion(PalabraGratis,PalabraObtenida,PosLetraHorizontal,PosLetraVertical),\n" +
-                "\tagregaSolucion(ListaSolAux,PalabraObtenida,PosPalVertical,NuevaSolucion),\n" +
+                "\tagregaSolucionVertical(ListaSolAux,PalabraObtenida,PosPalVertical,NuevaSolucion, AuxListaIntersecciones, NuevaListaIntersecciones),\n" +
                 "\tsolucion(NuevaListaPalabras,NuevaSolucion,SolucionAux,NuevaListaIntersecciones),\n" +
                 "\tSolucion = SolucionAux.\n" +
                 "\n" +
                 "/*vertical*/\n" +
                 "solucionGratis(ListaPalabras, ListaSolucion, Solucion, ListaIntersecciones):-\n" +
                 "\tgratis(PosGratis,PalabraGratis),\n" +
-                "\tagregaSolucion(ListaSolucion, PalabraGratis, PosGratis, ListaSolAux),\n" +
-                "\ttomaListaIntersecciones(ListaIntersecciones,Interseccion,PosGratis,NuevaListaIntersecciones),\n" +
+                "\tagregaSolucionVertical(ListaSolucion, PalabraGratis, PosGratis, ListaSolAux, ListaIntersecciones,_),!,\n" +
+                "\ttomaListaIntersecciones(ListaIntersecciones,Interseccion,PosGratis,AuxListaIntersecciones),\n" +
                 "\tinter(PosPalHorizontal, PosGratis, PosLetraHorizontal, PosLetraVertical) = Interseccion,\n" +
                 "\tpos(PosPalHorizontal,Tam),\n" +
                 "\ttomarPalabra(ListaPalabras,PalabraObtenida,Tam,NuevaListaPalabras),\n" +
                 "\tinterseccion(PalabraObtenida, PalabraGratis, PosLetraHorizontal, PosLetraVertical),\n" +
-                "\tagregaSolucion(ListaSolAux, PalabraObtenida, PosPalHorizontal, NuevaSolucion),\n" +
+                "\tagregaSolucionHorizontal(ListaSolAux, PalabraObtenida, PosPalHorizontal, NuevaSolucion, AuxListaIntersecciones, NuevaListaIntersecciones),\n" +
                 "\tsolucion(NuevaListaPalabras, NuevaSolucion, SolucionAux, NuevaListaIntersecciones),\n" +
-                "\tSolucion = SolucionAux." +
-                "\n" +
+                "\tSolucion = SolucionAux.\n" +
                 "solucion([], Solucion, Solucion,_).\n" +
                 "\n" +
                 "/* horizontal */\n" +
@@ -115,8 +120,7 @@ public class Serializador
                 "\tpos(PosPalVertical,Tam),\n" +
                 "\ttomarPalabra(ListaPalabras,PalabraObtenida,Tam,NuevaListaPalabras),\n" +
                 "\tinterseccion(Palabra,PalabraObtenida,PosLetraHorizontal,PosLetraVertical),\n" +
-                "\tverificaInterseccionesVertical(PalabraObtenida, PosPalVertical, ListaSolucion, AuxListaIntersecciones, NuevaListaIntersecciones),\n" +
-                "\tagregaSolucion(ListaSolucion,PalabraObtenida,PosPalVertical,NuevaSolucion),\n" +
+                "\tagregaSolucionVertical(ListaSolucion,PalabraObtenida,PosPalVertical,NuevaSolucion, AuxListaIntersecciones, NuevaListaIntersecciones),\n" +
                 "\tsolucion(NuevaListaPalabras,NuevaSolucion,SolucionAux,NuevaListaIntersecciones),\n" +
                 "\tSolucion = SolucionAux.\n" +
                 "\n" +
@@ -125,13 +129,12 @@ public class Serializador
                 "\ttomarPalabra(ListaSolucion, Palabra,Aux,_),\n" +
                 "\tAux > 0,\n" +
                 "\tnth1(PosPalabra, ListaSolucion, Palabra),\n" +
-                "\ttomaListaIntersecciones(ListaIntersecciones,Interseccion,PosPalabra,AuxListaIntersecciones),\n" +
+                "\ttomaListaIntersecciones(ListaIntersecciones,Interseccion,PosPalabra,AuxListaIntersecciones),!,\n" +
                 "\tinter(PosPalHorizontal,PosPalabra, PosLetraHorizontal,PosLetraVertical)=Interseccion,\n" +
                 "\tpos(PosPalHorizontal,Tam),\n" +
                 "\ttomarPalabra(ListaPalabras,PalabraObtenida,Tam,NuevaListaPalabras),\n" +
                 "\tinterseccion(PalabraObtenida,Palabra,PosLetraHorizontal,PosLetraVertical),\n" +
-                "\tverificaInterseccionesHorizontal(PalabraObtenida, PosPalHorizontal, ListaSolucion, AuxListaIntersecciones, NuevaListaIntersecciones),\n" +
-                "\tagregaSolucion(ListaSolucion,PalabraObtenida,PosPalHorizontal,NuevaSolucion),\n" +
+                "\tagregaSolucionHorizontal(ListaSolucion,PalabraObtenida,PosPalHorizontal,NuevaSolucion, AuxListaIntersecciones, NuevaListaIntersecciones),\n" +
                 "\tsolucion(NuevaListaPalabras,NuevaSolucion,SolucionAux,NuevaListaIntersecciones),\n" +
                 "\tSolucion = SolucionAux.\n" +
                 "    \n" +

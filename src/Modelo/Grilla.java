@@ -434,10 +434,6 @@ public class Grilla
                                                         new Atom ("["+this.getListaIntersecciones()+"]")});
                                                         */
         Query query = new Query(string);
-        System.out.println(string);
-        System.out.println(this.getListaPalabras());
-        System.out.println(this.getListaVacia());
-        System.out.println(this.getListaIntersecciones());
         if(query.hasSolution()) {
             this.armarGrilla(this.getSolucion(query));
         }
@@ -479,10 +475,11 @@ public class Grilla
         while(itLista.hasNext() && itPalabra.hasNext()){
             String respuesta = itLista.next();
             Palabra palabra = itPalabra.next();
-            if(palabra.getSize() == respuesta.length()){
+            if(respuesta.length() == palabra.getSize()){
                 palabra.setPalabra(respuesta);
             } else {
                 //tiro otra exception
+                System.out.println("tamaño de palabra erroneo.");
             }
         }
         if(itLista.hasNext() || itPalabra.hasNext()){
