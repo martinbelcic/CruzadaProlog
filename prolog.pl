@@ -1,5 +1,5 @@
-pos(1,6).
-pos(2,6).
+pos(1,7).
+pos(2,5).
 pos(3,5).
 pos(4,7).
 pos(5,8).
@@ -10,23 +10,23 @@ pos(9,4).
 pos(10,8).
 pos(11,7).
 pos(12,5).
-pos(13,6).
-pos(14,6).
+pos(13,5).
+pos(14,7).
 pos(15,5).
 pos(16,7).
 pos(17,7).
 pos(18,5).
 pos(19,8).
 pos(20,4).
-pos(21,4).
-pos(22,4).
+pos(21,5).
+pos(22,5).
 pos(23,4).
 pos(24,8).
 pos(25,5).
 pos(26,7).
 pos(27,7).
 pos(28,5).
-gratis(2,[a,f,e,c,t,o]).
+gratis(23,[n,i,ñ,o]).
 interseccion(Palabra1, Palabra2, Lugar1, Lugar2):-
 	nth1(Lugar1, Palabra1, Letra),
 	nth1(Lugar2, Palabra2, Letra).

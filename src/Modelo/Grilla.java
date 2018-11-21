@@ -449,7 +449,7 @@ public class Grilla
             String palabra = "";
             for(Term aux: actual.toTermArray()){
                 //aca tengo un caracter
-                palabra += aux;
+                palabra += (aux.toString().equals("'ñ'"))? "ñ": aux;
             }
             retorno.add(palabra);
         }
